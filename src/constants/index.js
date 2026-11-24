@@ -1,273 +1,132 @@
-import {
-  mobile,
-  backend,
-  creator,
-  web,
-  javascript,
-  typescript,
-  html,
-  css,
-  reactjs,
-  redux,
-  tailwind,
-  nodejs,
-  mongodb,
-  git,
-  figma,
-  docker,
-  meta,
-  starbucks,
-  tesla,
-  aws,
-  java,
-  socialpoint,
-  ocado,
-  shopify,
-  carrent,
-  jobit,
-  colorgame,
-  videogame,
-  gymios,
-  portofolio,
-  tripguide,
-  threejs,
-} from "../assets/assets";
+// All the page copy lives here. **bold** and `code` inside a string are rendered
+// by the helper in ../components/rich.jsx, so the data stays plain strings.
 
-export const navLinks = [
-  {
-    id: "about",
-    title: "About",
-  },
-  {
-    id: "work",
-    title: "Work",
-  },
-  {
-    id: "contact",
-    title: "Contact",
-  },
+export const NAV = [
+  { id: "about", label: "About" },
+  { id: "experience", label: "Experience" },
+  { id: "work", label: "Work" },
+  { id: "contact", label: "Contact" },
 ];
 
-const services = [
-  {
-    title: "Frontend Developer",
-    icon: web,
-  },
-  {
-    title: "ReactJS Developer",
-    icon: mobile,
-  },
-  {
-    title: "Backend Developer",
-    icon: backend,
-  },
-  {
-    title: "UX/UI Designer",
-    icon: creator,
-  },
-];
+export const HERO = {
+  name: "Andrei",
+  tagline: "Software & AI Engineer. I build agents that run in production.",
+  blurb:
+    "Two years on the web platform and the AI layer at a logistics company — React, " +
+    "Next.js and TypeScript on the front, GraphQL and Prisma on AWS behind it, and a " +
+    "**LangGraph multi-agent workflow** that drafts contracts with a human in the loop. " +
+    "Before that, Socialpoint and Ocado Technology.",
+  stats: [
+    { value: "2 yrs", note: "Full-time, shipping and on call" },
+    { value: "C2", note: "English · native ES / CA" },
+  ],
+};
 
-const technologies = [
-  {
-    name: "HTML 5",
-    icon: html,
-  },
-  {
-    name: "CSS 3",
-    icon: css,
-  },
-  {
-    name: "JavaScript",
-    icon: javascript,
-  },
-  {
-    name: "TypeScript",
-    icon: typescript,
-  },
-  {
-    name: "React JS",
-    icon: reactjs,
-  },
-  {
-    name: "AWS",
-    icon: aws,
-  },
-  {
-    name: "Java",
-    icon: java,
-  },
-  {
-    name: "Redux Toolkit",
-    icon: redux,
-  },
-  {
-    name: "Tailwind CSS",
-    icon: tailwind,
-  },
-  {
-    name: "Node JS",
-    icon: nodejs,
-  },
-  {
-    name: "git",
-    icon: git,
-  },
-  {
-    name: "figma",
-    icon: figma,
-  },
-  {
-    name: "docker",
-    icon: docker,
-  },
-];
+export const ABOUT =
+  "I ship full-stack products and the agent workflows behind them, then run them in " +
+  "production — bugs, incidents and all. Lately that means keeping LLM costs sane: " +
+  "deterministic code wherever an agent is not needed, and routing each graph node to " +
+  "the right model instead of the biggest one.";
 
-const experiences = [
+export const JOBS = [
   {
-    title: "Engineer Apprentice",
-    company_name: "Ocado Technology",
-    icon: ocado,
-    iconBg: "#383E56",
-    date: "October 2022 - February 2023",
-    points: [
-      "Interned in a team that works with a micro-service based platform.",
-      "Given different tasks and tickets, I had to work on a solution, test it, review it, and deploy it.",
-      "Worked on both front end (React) and back end (Java, Spring Boot).",
-      "Participated in the team using Agile methodology.",
+    role: "Software & AI Engineer",
+    company: "Estoko Logistics",
+    when: "Dec 2024 — Nov 2026",
+    bullets: [
+      "Built a **LangGraph multi-agent workflow** in Python that drafts contracts and flags mismatches for human approval, cutting review hours and the risk of legal claims and absorbed costs.",
+      "Cut infrastructure spend by optimising and refactoring the codebase.",
+      "Kept LLM spend low with deterministic code where agents were not needed, and per-node model routing — cheaper models for simple steps, stronger ones for planning and orchestration.",
+      "Designed and built the company API: **GraphQL/Apollo and Prisma on AWS** across SQL and NoSQL, plus MCP tools connecting LLMs to internal systems.",
+      "Developed and ran the whole web platform in React, Next.js and TypeScript, from customer-facing pages to internal tools.",
+      "Traced tool calls and logs with SigNoz and validated agent output with the people who use it.",
     ],
   },
   {
-    title: "Fullstack Developer Internship",
-    company_name: "Socialpoint | Take-Two Interactive",
-    icon: socialpoint,
-    iconBg: "#383E56",
-    date: "May 2023 - May 2024",
-    points: [
-      "Improved different tools that are used for game development & user/game support, as well as adding new functionalities and creating new ones, improving the experience for game developers, QAs and customer supports.",
-      "Worked on both frontend and backend, designed & created UIs, improvedexisting endpoints and created new endpoints and functionalities, worked with external APIs. Applied testing on both ends.",
-      "Participated in a team that uses sprints & agile methodology.",
+    role: "Full-Stack Developer Intern",
+    company: "Socialpoint | Take-Two Interactive",
+    when: "May 2023 — May 2024",
+    bullets: [
+      "Built features and internal tools used daily by game developers, QA and customer support.",
+      "React/Redux UIs and backend endpoints, external API integrations, and tests on both ends (PHPUnit, React Testing Library).",
+      "Docker, AWS, Terraform and LocalStack, in an agile sprint team.",
+    ],
+  },
+  {
+    role: "Engineer Apprentice",
+    company: "Ocado Technology",
+    when: "Oct 2022 — Feb 2023",
+    bullets: [
+      "Delivered tickets end to end on a microservices platform: implementation, testing, code review, deployment.",
+      "Frontend in React, backend in Java and Spring Boot.",
     ],
   },
 ];
 
-const testimonials = [
+export const PROJECTS = [
   {
-    testimonial:
-      "I thought it was impossible to make a website as beautiful as our product, but Rick proved me wrong.",
-    name: "Sara Lee",
-    designation: "CFO",
-    company: "Acme Co",
-    image: "https://randomuser.me/api/portraits/women/4.jpg",
-  },
-  {
-    testimonial:
-      "I've never met a web developer who truly cares about their clients' success like Rick does.",
-    name: "Chris Brown",
-    designation: "COO",
-    company: "DEF Corp",
-    image: "https://randomuser.me/api/portraits/men/5.jpg",
-  },
-  {
-    testimonial:
-      "After Rick optimized our website, our traffic increased by 50%. We can't thank them enough!",
-    name: "Lisa Wang",
-    designation: "CTO",
-    company: "456 Enterprises",
-    image: "https://randomuser.me/api/portraits/women/6.jpg",
-  },
-];
-
-const projects = [
-  {
-    name: "Color Game",
-    description:
-      "Simple and easy game created with React in order to first test it and its hooks.",
+    name: "Orhideea",
+    what:
+      "A generative audio-visual instrument. Painting on the canvas is composing: " +
+      "position maps to pitch, and every stroke plays as it is drawn. The canvas is " +
+      "the piece, and it replays.",
+    decision:
+      "Notes quantize to a scale by default, so free clicking never sounds wrong. " +
+      "Rendering is held to the 16.7 ms frame budget — a visual feature that costs " +
+      "frame time, or changes how the instrument feels, gets reverted rather than " +
+      "explained away.",
     tags: [
-      {
-        name: "react",
-        color: "blue-text-gradient",
-      },
-      {
-        name: "javascript",
-        color: "orange-text-gradient",
-      },
+      { label: "pixijs", tone: "t-blue" },
+      { label: "tone.js", tone: "t-green" },
+      { label: "typescript", tone: "t-pink" },
+      { label: "midi export", tone: "t-orange" },
     ],
-    image: colorgame,
-    source_code_link: "https://github.com/andrei-0000/react-colors-game",
+    links: [
+      { label: "Code", href: "https://github.com/popi0052/orhideea" },
+      { label: "Live", href: "https://orhideea.vercel.app" },
+    ],
   },
   {
-    name: "Gym IOS",
-    description:
-      "Mobile Application made with React Native that aims to provide a swift, clean and cool gym tracking experience.",
+    name: "stemtool",
+    what:
+      "Drop an audio file, get BPM and key straight away, then separate it into " +
+      "vocals, drums, bass and other, and download the stems you tick.",
+    decision:
+      "TypeScript owns state, queue, API and UI; Python is a dumb binary that takes " +
+      "`{in, out, preset}` and prints progress. One Python process stays alive across " +
+      "jobs — loading a RoFormer checkpoint costs 5–20 s, and a queue would pay that " +
+      "on every file.",
     tags: [
-      {
-        name: "react native",
-        color: "blue-text-gradient",
-      },
-      {
-        name: "zustand",
-        color: "green-text-gradient",
-      },
-      {
-        name: "css",
-        color: "pink-text-gradient",
-      },
-      {
-        name: "expo",
-        color: "green-text-gradient",
-      },
+      { label: "typescript", tone: "t-blue" },
+      { label: "node", tone: "t-green" },
+      { label: "python", tone: "t-orange" },
+      { label: "cuda", tone: "t-pink" },
     ],
-    image: gymios,
-    source_code_link: "https://github.com/andrei-0000/GymIOS",
-  },
-  {
-    name: "This Website",
-    description:
-      "This website was made also as a means of learning React Three, practice Tailwind, and the other technologies involved in it. Made with the inspiration of JSMastery's portofolio",
-    tags: [
-      {
-        name: "react",
-        color: "blue-text-gradient",
-      },
-      {
-        name: "tailwind",
-        color: "green-text-gradient",
-      },
-      {
-        name: "three",
-        color: "pink-text-gradient",
-      },
-    ],
-    image: portofolio,
-    source_code_link: "https://github.com/andrei-0000/Portofolio",
+    links: [{ label: "Code", href: "https://github.com/popi0052/stemtool" }],
+    note: "Demo runs locally (needs a GPU)",
   },
 ];
 
-const otherProjects = [
-  {
-    name: "3D Game",
-    description:
-      "3D Runner style game developed in 1 month as a class project.",
-    tags: [
-      {
-        name: "unity",
-        color: "orange-text-gradient",
-      },
-      {
-        name: "c-sharp",
-        color: "blue-text-gradient",
-      },
-    ],
-    image: videogame,
-    source_code_link: "https://github.com/andrei-0000/3DGame",
-  },
+// drawn as the rotating balls in the Stack section
+export const SKILLS = [
+  "TypeScript", "React", "Next.js", "Node", "Python", "GraphQL",
+  "Prisma", "AWS", "Docker", "Terraform", "LangGraph", "MCP",
 ];
 
-export {
-  services,
-  technologies,
-  experiences,
-  testimonials,
-  projects,
-  otherProjects,
+export const STACK = [
+  { title: "Frontend", items: "React · Next.js · TypeScript · Tailwind CSS · Redux · three.js" },
+  { title: "Backend & APIs", items: "Node.js · GraphQL (Apollo) · Prisma · REST · Python (FastAPI) · Java, Spring Boot" },
+  { title: "AI & agents", items: "LangGraph · multi-agent workflows · tool calling · model routing · human-in-the-loop · MCP" },
+  { title: "Cloud & data", items: "AWS · Docker · Terraform · SigNoz · SQL and NoSQL" },
+  { title: "Testing", items: "Playwright · React Testing Library · PHPUnit · Git · Claude Code" },
+  { title: "Education", items: "BSc Computer Engineering, UPC Barcelona — Software Engineering, FIB, 2024" },
+];
+
+export const CONTACT = {
+  line: "Madrid, relocating. Fastest route is email — I answer within a day.",
+  email: "eu.andreip@gmail.com",
+  social: [
+    { label: "GitHub", href: "https://github.com/popi0052" },
+    { label: "LinkedIn", href: "https://www.linkedin.com/in/andrei-constantin-popa/" },
+  ],
 };

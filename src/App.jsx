@@ -1,39 +1,29 @@
-import React from "react";
-import { BrowserRouter } from "react-router-dom";
-import {
-  Navbar,
-  Hero,
-  About,
-  Experience,
-  Tech,
-  Works,
-  Contact,
-  StarsCanvas,
-  OtherWorks,
-} from "./components/components";
-import { SectionWrapper } from "./hoc";
-import { Stars } from "@react-three/drei";
+import HeroScene from "./components/scene/HeroScene";
+import Header from "./components/Header";
+import Hero from "./components/Hero";
+import About from "./components/About";
+import Experience from "./components/Experience";
+import Projects from "./components/Projects";
+import Stack from "./components/Stack";
+import Contact from "./components/Contact";
+import Footer from "./components/Footer";
 
-const App = () => {
-  return (
-    <BrowserRouter>
-      <div className="relative z-0 bg-primary">
-        <div className="">
-          <Navbar />
-          <Hero />
-        </div>
-        <SectionWrapper Component={About} idName="about" />
-        <SectionWrapper Component={Experience} idName="work" />
-        <SectionWrapper Component={Tech} idName="tech" />
-        <SectionWrapper Component={Works} idName="works" />
-        <SectionWrapper Component={OtherWorks} idName="other-works" />
-        <div className="relative z-0">
-          <SectionWrapper Component={Contact} idName="contact" />
-        </div>
-        <StarsCanvas />
-      </div>
-    </BrowserRouter>
-  );
-};
+const App = () => (
+  <>
+    <HeroScene />
+    <div className="layer">
+      <Header />
+      <main>
+        <Hero />
+        <About />
+        <Experience />
+        <Projects />
+        <Stack />
+        <Contact />
+        <Footer />
+      </main>
+    </div>
+  </>
+);
 
 export default App;
