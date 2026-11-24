@@ -107,12 +107,6 @@ export const PROJECTS = [
   },
 ];
 
-// drawn as the rotating balls in the Stack section
-export const SKILLS = [
-  "TypeScript", "React", "Next.js", "Node", "Python", "GraphQL",
-  "Prisma", "AWS", "Docker", "Terraform", "LangGraph", "MCP",
-];
-
 export const STACK = [
   { title: "Frontend", items: "React · Next.js · TypeScript · Tailwind CSS · Redux · three.js" },
   { title: "Backend & APIs", items: "Node.js · GraphQL (Apollo) · Prisma · REST · Python (FastAPI) · Java, Spring Boot" },
