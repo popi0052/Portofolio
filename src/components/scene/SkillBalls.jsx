@@ -117,8 +117,18 @@ const SkillBalls = () => {
       return texture;
     };
 
-    const IDLE_Y = 0.5;
-    const IDLE_X = 0.09;
+    // Each ball sways on its own numbers - own speed, own direction, own phase -
+    // so the twelve never move as one block. The sway stays well inside a quarter
+    // turn, which keeps the logo facing you instead of spinning out of sight.
+    const noise = (i, k) => {
+      const x = Math.sin((i + 1) * 12.9898 + k * 78.233) * 43758.5453;
+      return x - Math.floor(x);
+    };
+    const between = (i, k, lo, hi) => lo + noise(i, k) * (hi - lo);
+    const sign = (i, k) => (noise(i, k) < 0.5 ? -1 : 1);
+    // shortest signed way round, so a ball that has been spun does not unwind
+    const wrap = (a) => Math.atan2(Math.sin(a), Math.cos(a));
+
     const ballGeo = new THREE.IcosahedronGeometry(0.4, 1);
     const balls = SKILLS.map((skill, i) => {
       const ico = new THREE.Mesh(
@@ -155,7 +165,20 @@ const SkillBalls = () => {
       ball.add(ico, decal);
       const holder = new THREE.Group();
       holder.add(ball);
-      holder.userData = { ball, ico, phase: i * 0.7, baseY: 0, spin: { x: IDLE_X, y: IDLE_Y } };
+      holder.userData = {
+        ball,
+        ico,
+        baseY: 0,
+        vel: { x: 0, y: 0 },
+        sway: {
+          fy: between(i, 1, 0.17, 0.4),
+          ay: sign(i, 2) * between(i, 3, 0.45, 0.95),
+          fx: between(i, 4, 0.12, 0.3),
+          ax: sign(i, 5) * between(i, 6, 0.14, 0.34),
+          ph: between(i, 7, 0, Math.PI * 2),
+          float: between(i, 8, 0.6, 1.2),
+        },
+      };
       ico.userData.holder = holder;
       scene.add(holder);
       return holder;
@@ -227,8 +250,8 @@ const SkillBalls = () => {
       held.ball.rotation.x += dy * k;
       // carried into the loop as momentum; 60 turns a per-frame delta into rad/s
       const cap = (v) => Math.max(-14, Math.min(14, v));
-      held.spin.y = cap(dx * k * 60);
-      held.spin.x = cap(dy * k * 60);
+      held.vel.y = cap(dx * k * 60);
+      held.vel.x = cap(dy * k * 60);
       if (!raf) renderer.render(scene, camera); // reduced motion: no loop running
     };
 
@@ -262,14 +285,21 @@ const SkillBalls = () => {
       const t = (now - t0) / 1000;
       for (const h of balls) {
         const u = h.userData;
+        const s = u.sway;
         if (u !== held) {
-          // let a thrown ball ease back into the idle turn instead of stopping dead
-          u.spin.x += (IDLE_X - u.spin.x) * 0.03;
-          u.spin.y += (IDLE_Y - u.spin.y) * 0.03;
+          u.vel.x *= 0.95;
+          u.vel.y *= 0.95;
+          if (Math.abs(u.vel.x) + Math.abs(u.vel.y) > 0.06) {
+            // still carrying the throw
+            u.ball.rotation.x += u.vel.x * dt;
+            u.ball.rotation.y += u.vel.y * dt;
+          } else {
+            // spent: glide back onto its own sway rather than stopping dead
+            u.ball.rotation.y += wrap(Math.sin(t * s.fy + s.ph) * s.ay - u.ball.rotation.y) * 0.05;
+            u.ball.rotation.x += wrap(Math.sin(t * s.fx + s.ph * 1.7) * s.ax - u.ball.rotation.x) * 0.05;
+          }
         }
-        u.ball.rotation.x += u.spin.x * dt;
-        u.ball.rotation.y += u.spin.y * dt;
-        h.position.y = u.baseY + Math.sin(t * 0.9 + u.phase) * 0.07;
+        h.position.y = u.baseY + Math.sin(t * s.float + s.ph) * 0.07;
       }
       render();
     };

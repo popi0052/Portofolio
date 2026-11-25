@@ -16,10 +16,7 @@ export const HERO = {
     "Next.js and TypeScript on the front, GraphQL and Prisma on AWS behind it, and a " +
     "**LangGraph multi-agent workflow** that drafts contracts with a human in the loop. " +
     "Before that, Socialpoint and Ocado Technology.",
-  stats: [
-    { value: "2 yrs", note: "Full-time, shipping and on call" },
-    { value: "C2", note: "English · native ES / CA" },
-  ],
+  stats: [{ value: "2 yrs", note: "Full-time, shipping and on call" }],
 };
 
 export const ABOUT =
